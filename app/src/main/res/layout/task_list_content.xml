@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:padding="10dp"
+    android:background="@drawable/rounded_corner_layout"
     android:gravity="right"
     android:orientation="vertical">
 
@@ -15,8 +17,11 @@
 
         <TextView
             android:id="@+id/task_topic"
-            android:layout_width="190dp"
+            android:layout_width="215dp"
             android:layout_height="match_parent"
+            android:background="@drawable/rounded_corner_layout"
+            android:backgroundTint="@color/text_container_kerjain"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Topic" />
 
@@ -25,6 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/rounded_corner_layout"
+            android:backgroundTint="@color/text_container_kerjain"
             android:gravity="center"
             android:text="TextView" />
 
@@ -32,9 +39,10 @@
 
     <Button
         android:id="@+id/done_btn"
-        android:layout_width="156dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:textSize="10sp" />
+        android:layout_marginTop="5dp"
+        android:text="Selesai"
+        android:textSize="12sp" />
 
 </LinearLayout>
