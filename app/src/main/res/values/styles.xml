@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="edit_text_box">
+        <item name="strokeColor">#302B2B</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+</resources>
