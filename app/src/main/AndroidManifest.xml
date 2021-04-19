@@ -9,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KerjainProject">
-        <activity android:name=".TaskDetailActivity"></activity>
+        <activity
+            android:name=".TaskDetailActivity"
+            android:label="Detail"
+            android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".AddTaskActivity"
-            android:theme="@style/Theme.KerjainProject.NoActionBar">
+            android:label="Tambah Tugas"
+            android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
             <intent-filter>
                 <action android:name="com.example.kerjainproject.AddTaskActivity" />
 

@@ -3,7 +3,7 @@ package com.example.kerjainproject.ui.task
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Task(val topic: String,
+data class Task(val topic: String,
            val priority: Int,
            val deadline: GregorianCalendar,
            val description: String) {
