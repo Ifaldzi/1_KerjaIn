@@ -14,8 +14,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="textCapSentences"
+        android:hint="@string/topic_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelEditTextTopic" />
 
@@ -26,20 +26,39 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="@string/topic_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextDeadline"
+    <TextView
+        android:id="@+id/deadline_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:ems="10"
-        android:inputType="date"
+        android:minWidth="130dp"
+        style="@android:style/Widget.Holo.Spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelEditTextDeadline" />
+
+    <TextView
+        android:id="@+id/deadline_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_label"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelEditTextDeadline"
+        app:layout_constraintLeft_toLeftOf="@+id/deadline_time" />
+
+    <TextView
+        android:id="@+id/deadline_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="125dp"
+        style="@android:style/Widget.Holo.Spinner"
+        app:layout_constraintBaseline_toBaselineOf="@+id/deadline_date"
+        app:layout_constraintStart_toEndOf="@+id/deadline_date"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:id="@+id/labelEditTextDeadline"
@@ -48,7 +67,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:text="@string/date_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTopic" />
 
@@ -59,12 +78,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:text="@string/priority_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDeadline" />
+        app:layout_constraintTop_toBottomOf="@+id/deadline_date" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/priority_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -76,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/labelPriority">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/priority_radio_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="50dp"
@@ -84,6 +103,7 @@
             android:text="1" />
 
         <RadioButton
+            android:id="@+id/priority_radio_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="50dp"
@@ -91,6 +111,7 @@
             android:text="2" />
 
         <RadioButton
+            android:id="@+id/priority_radio_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3" />
@@ -103,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Button"
+        android:text="@string/save_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
@@ -128,8 +149,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/description_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/priority_group" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

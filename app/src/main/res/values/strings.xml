@@ -13,4 +13,14 @@
     <string name="menu_task_list">Task List</string>
     <string name="done_button">SELESAI</string>
     <string name="deadline_dummy">Day, DD MMMM YYYY HH:MM</string>
+    <string name="date_label">Tanggal</string>
+    <string name="time_label">Jam</string>
+    <string name="priority_label">Prioritas</string>
+    <string name="save_button">Simpan</string>
+    <string name="description_label">Deskripsi Tugas</string>
+    <string name="topic_label">Topik</string>
+
+    <string name="date">%s, %d %s %d</string>
+    <string name="time">%02d:%02d</string>
+    <string name="time_12_hour_format">%02d:%02d %s</string>
 </resources>
