@@ -13,7 +13,7 @@ import com.example.kerjainproject.R
 import com.example.kerjainproject.TaskDetailActivity
 import com.example.kerjainproject.database.Task
 
-class TaskAdapter() :
+class TaskAdapter(val viewModel: TaskViewModel) :
     ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallback()) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -44,11 +44,12 @@ class TaskAdapter() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.doneButton.setOnClickListener {
+            viewModel.delete(getItem(position))
+        }
         holder.itemView.setOnClickListener{
             val intent = Intent(it.context, TaskDetailActivity::class.java)
-            intent.putExtra("topic", getItem(position).topic)
-            intent.putExtra("deadline", getItem(position).deadlineToString())
-            intent.putExtra("description", getItem(position).description)
+            intent.putExtra("task", getItem(position))
             it.context.startActivity(intent)
         }
     }

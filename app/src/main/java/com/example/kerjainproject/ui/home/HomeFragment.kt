@@ -16,7 +16,6 @@ import com.example.kerjainproject.TaskDetailActivity
 import com.example.kerjainproject.database.Task
 import com.example.kerjainproject.ui.task.TaskViewModel
 import com.example.kerjainproject.ui.task.TaskViewModelFactory
-import org.w3c.dom.Text
 
 class HomeFragment : Fragment() {
     private val taskViewModel: TaskViewModel by viewModels{
@@ -38,6 +37,7 @@ class HomeFragment : Fragment() {
 
         taskViewModel.tasks.observe(viewLifecycleOwner){tasks ->
             attachDataToDashboard(root, tasks)
+            setContainer(root, tasks.isEmpty())
         }
 
         return root
@@ -48,17 +48,37 @@ class HomeFragment : Fragment() {
         tasks.let {totalTask = it.size}
         val taskTotalView = root.findViewById<TextView>(R.id.task_total)
         taskTotalView.text = totalTask.toString()
-        val upcomingTask = tasks.first()
-        root.findViewById<TextView>(R.id.task_topic_home).text = upcomingTask.topic
-        root.findViewById<TextView>(R.id.deadline_task_home).text = upcomingTask.deadlineToString()
+        if (tasks.isNotEmpty()) {
+            val upcomingTask = tasks.first()
+            root.findViewById<TextView>(R.id.task_topic_home).text = upcomingTask.topic
+            root.findViewById<TextView>(R.id.deadline_task_home).text = upcomingTask.deadlineToString()
 
-        val taskContainer = root.findViewById<LinearLayout>(R.id.task_home_container)
-        taskContainer.setOnClickListener {
-            val intent = Intent(it.context, TaskDetailActivity::class.java)
-            intent.putExtra("topic", upcomingTask.topic)
-            intent.putExtra("deadline", upcomingTask.deadlineToString())
-            intent.putExtra("description", upcomingTask.description)
-            it.context.startActivity(intent)
+            val taskContainer = root.findViewById<LinearLayout>(R.id.task_home_container)
+            taskContainer.setOnClickListener {
+                val intent = Intent(it.context, TaskDetailActivity::class.java)
+                intent.putExtra("task", upcomingTask)
+                it.context.startActivity(intent)
+            }
+
+            root.findViewById<Button>(R.id.home_task_done_btn).setOnClickListener {
+                taskViewModel.delete(upcomingTask)
+            }
+        }
+    }
+
+    private fun setContainer(view: View, listEmpty: Boolean) {
+        val nonEmptyContainer = view.findViewById<LinearLayout>(R.id.not_empty_container)
+        val emptyContainer = view.findViewById<TextView>(R.id.empty_container)
+        val doneButton = view.findViewById<Button>(R.id.home_task_done_btn)
+        if(listEmpty) {
+            nonEmptyContainer.visibility = View.GONE
+            doneButton.visibility = View.GONE
+            emptyContainer.visibility = View.VISIBLE
+        }
+        else {
+            nonEmptyContainer.visibility = View.VISIBLE
+            doneButton.visibility = View.VISIBLE
+            emptyContainer.visibility = View.GONE
         }
     }
 }

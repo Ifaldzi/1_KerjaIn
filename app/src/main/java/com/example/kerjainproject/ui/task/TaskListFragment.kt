@@ -25,7 +25,7 @@ class TaskListFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_task_list, container, false)
         val recyclerView = root.findViewById<RecyclerView>(R.id.task_recycler_view)
-        val taskAdapter = TaskAdapter()
+        val taskAdapter = TaskAdapter(taskViewModel)
         recyclerView.adapter = taskAdapter
         taskViewModel.tasks.observe(viewLifecycleOwner){tasks ->
             tasks.let { taskAdapter.submitList(it) }
