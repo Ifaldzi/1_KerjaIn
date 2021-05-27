@@ -10,10 +10,7 @@ import android.text.Editable
 import android.text.format.DateFormat
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioGroup
-import android.widget.TextView
+import android.widget.*
 import com.example.kerjainproject.database.Task
 import java.util.*
 
@@ -57,11 +54,17 @@ class AddTaskActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             val topic = findViewById<EditText>(R.id.editTextTopic).text
             val taskDescription = findViewById<EditText>(R.id.editTextDescription).text
-            val newTask = Task(topic.toString(), 1, calendar, taskDescription.toString())
-            val replyIntent = Intent()
-            replyIntent.putExtra(NEW_TASK_REPLY, newTask)
-            setResult(Activity.RESULT_OK, replyIntent)
-            finish()
+            if(priority == 0 || topic.isEmpty()) {
+                Toast.makeText(this, "Form belum terisi seluruhnya", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            else {
+                val newTask = Task(topic.toString(), priority, calendar, taskDescription.toString())
+                val replyIntent = Intent()
+                replyIntent.putExtra(NEW_TASK_REPLY, newTask)
+                setResult(Activity.RESULT_OK, replyIntent)
+                finish()
+            }
         }
     }
 

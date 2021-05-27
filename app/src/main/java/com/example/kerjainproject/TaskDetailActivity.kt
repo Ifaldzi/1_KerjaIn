@@ -22,7 +22,7 @@ class TaskDetailActivity : AppCompatActivity() {
         val task = intent.getSerializableExtra("task") as Task
 
         val topic = task.topic
-        val deadline = task.deadlineToString()
+        val deadline = task.deadlineToString(this)
         val description = task.description
 
         findViewById<TextView>(R.id.topic_detail).text = topic

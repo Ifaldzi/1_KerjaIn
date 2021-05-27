@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, NEW_TASK_REQUEST_ACTIVITY)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == NEW_TASK_REQUEST_ACTIVITY && resultCode == Activity.RESULT_OK){
             val newTask = data?.getSerializableExtra(AddTaskActivity.NEW_TASK_REPLY) as? Task

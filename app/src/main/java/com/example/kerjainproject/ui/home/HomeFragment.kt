@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.kerjainproject.KerjainApplication
+import com.example.kerjainproject.MainActivity
 import com.example.kerjainproject.R
 import com.example.kerjainproject.TaskDetailActivity
 import com.example.kerjainproject.database.Task
@@ -32,7 +34,7 @@ class HomeFragment : Fragment() {
         val button = root.findViewById<Button>(R.id.add_task_button)
         button.setOnClickListener {
             val intent = Intent("com.example.kerjainproject.AddTaskActivity")
-            startActivity(intent)
+            startActivityForResult(intent, MainActivity.NEW_TASK_REQUEST_ACTIVITY)
         }
 
         taskViewModel.tasks.observe(viewLifecycleOwner){tasks ->
@@ -51,7 +53,11 @@ class HomeFragment : Fragment() {
         if (tasks.isNotEmpty()) {
             val upcomingTask = tasks.first()
             root.findViewById<TextView>(R.id.task_topic_home).text = upcomingTask.topic
-            root.findViewById<TextView>(R.id.deadline_task_home).text = upcomingTask.deadlineToString()
+            root.findViewById<TextView>(R.id.deadline_task_home).text = context?.let {
+                upcomingTask.deadlineToString(
+                    it
+                )
+            }
 
             val taskContainer = root.findViewById<LinearLayout>(R.id.task_home_container)
             taskContainer.setOnClickListener {
@@ -80,5 +86,11 @@ class HomeFragment : Fragment() {
             doneButton.visibility = View.VISIBLE
             emptyContainer.visibility = View.GONE
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val parentActivity = activity as MainActivity
+        parentActivity.onActivityResult(requestCode, resultCode, data)
     }
 }
